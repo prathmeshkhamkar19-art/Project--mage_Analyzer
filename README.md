@@ -3,17 +3,17 @@
 Over Flow (Project) - 
 
 Project idea
-     ↓
+     |
 Create folder structure
-     ↓
+     |
 Create Flask app (app.py)
-     ↓
+     |
 Create HTML template
-     ↓
+     |
 Add forms
-     ↓
+     |
 Add main logic
-     ↓
+     |
 Test and improve
 
 
