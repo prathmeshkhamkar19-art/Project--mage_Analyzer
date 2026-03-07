@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Base page  {% endblock %}</title>
+     <style>
+        body {font-family: Arial, Helvetica, sans-serif; padding: 20px ;background-color: blueviolet}
+        header , footer {background: #ded9d9; padding : 10px; color: white;}
+        nav a {margin:  0 10 px; color: white; text-decoration: none;}
+        main {
+            background: blueviolet; padding: 20px; margin-top: 10px; border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+     <header>
+        <h1> Image Analyzer/ <h1>
+    </header>
+
+    <main>
+        {% block conntent %}
+
+        {% endblock %}
+    </main>
+
+     <footer>
+        <p>
+            &copy; Project By - Prathmesh Khamkar
+        </p>
+    </footer>
+
+    
+</body>
+</html>
