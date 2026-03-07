@@ -4,7 +4,34 @@
 
 {% block content %} 
 
+<form method="POST"  action="/" >
 
+   {{ form.hidden_tag() }}  
+
+<P>
+   {{ form.name.label }}<br>         <!-- we call field name-->
+   {{ form.name(size=34) }}<br>
+   {% for error in form.name.errors %}
+    <span style="color: red;">
+      {{ error }}
+    </span>
+    {% endfor %}
+</P>
+
+
+<P>
+   {{ form.email_id.label }}<br>         <!-- we call field name-->
+   {{ form.email_id(size=34) }}<br>
+   {% for error in form.email_id.errors %}
+    <span style="color: red;">
+      {{ error }}
+    </span>
+    {% endfor %}
+</P>
+
+<p> {{ form.submit() }} </p>  <!-- we calling the submit feild only -->
+
+</form>
 
 
 

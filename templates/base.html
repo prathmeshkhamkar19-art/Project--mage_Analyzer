@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Base page  {% endblock %}</title>
      <style>
-        body {font-family: Arial, Helvetica, sans-serif; padding: 20px ;background-color: blueviolet}
-        header , footer {background: #ded9d9; padding : 10px; color: white;}
-        nav a {margin:  0 10 px; color: white; text-decoration: none;}
+        body {font-family: Arial, Helvetica, sans-serif; padding: 20px ;background-color: blueviolet}   
+        header , footer {background: white; padding : 10px; color: rgb(34, 28, 28);}
+        
         main {
             background: blueviolet; padding: 20px; margin-top: 10px; border-radius: 5px;
         }
@@ -15,11 +15,11 @@
 </head>
 <body>
      <header>
-        <h1> Image Analyzer/ <h1>
+        <h1> Image Analyzer </h1>    <!-- Header -->
     </header>
 
     <main>
-        {% block conntent %}
+        {% block content %}
 
         {% endblock %}
     </main>
