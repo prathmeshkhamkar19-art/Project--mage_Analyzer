@@ -6,7 +6,7 @@
 
 <form method="POST"  action="/" >
 
-   {{ form.hidden_tag() }}  
+   {{ form.hidden_tag() }}  <!-- this is csrf protection token which is under cookie and session to compare the Secreate Key-->
 
 <P>
    {{ form.name.label }}<br>         <!-- we call field name-->
