@@ -1,5 +1,5 @@
 from flask import Flask,request,render_template,url_for,Response,redirect,session
-from form import Datainput  #from form Module import the Datainput class
+from form import Datainput,Imageinput  #from form Module import the Datainput class
 
 app =Flask(__name__)
 app.secret_key= "project-secreate-key"
@@ -26,6 +26,7 @@ def home():  # in that page using from (flask -wtf) we get the data from user
 @app.route("/upload",methods =["POST","GET"])  #GET - to get the user form for image submission\
                                               #POST - to post or send the image to the serve or python backend
 def upload():
+   image_Obj = Imageinput()   #this is object of class IMageInput from same form module
    return render_template("upload.html")
 
 
