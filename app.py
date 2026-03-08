@@ -1,5 +1,7 @@
 from flask import Flask,request,render_template,url_for,Response,redirect,session
 from form import Datainput,Imageinput  #from form Module import the Datainput class
+from werkzeug.utils import secure_filename   # used to defend from hacker becouse using file name hacker iherit app.py or install unrequired maleare
+import os
 
 app =Flask(__name__)
 app.secret_key= "project-secreate-key"
@@ -28,10 +30,14 @@ def home():  # in that page using from (flask -wtf) we get the data from user
                                               #POST - to post or send the image to the serve or python backend
 def upload():
    image_Obj = Imageinput()   #this is object of class IMageInput from same form module
-   name_for_upload_page = session.get["name"]   #get to paste on upload form
+   name_for_upload_page = session.get("name")   #get to paste on upload form
 
    if image_Obj.validate_on_submit():   # validator to chck we get image if not then render on upload page
-      iamge_file = image_Obj.image.data      #get the image from form of imageinput in file image_file
+      image_file = image_Obj.image.data      #get the image from form of imageinput in file image_file
+
+      name_af_secure = secure_filename(image_file.filename)
+
+      image_file.save(os.path.join(app.config['UPLOAD_FOLDER'],name_af_secure))  #this save image(image_file) in static file with new_secure_name
       
 
 
