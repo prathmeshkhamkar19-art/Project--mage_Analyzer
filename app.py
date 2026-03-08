@@ -3,6 +3,7 @@ from form import Datainput,Imageinput  #from form Module import the Datainput cl
 
 app =Flask(__name__)
 app.secret_key= "project-secreate-key"
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 @app.route("/",methods=["POST","GET"]) #this is page firstly open(defult)
 def home():  # in that page using from (flask -wtf) we get the data from user 
@@ -27,7 +28,19 @@ def home():  # in that page using from (flask -wtf) we get the data from user
                                               #POST - to post or send the image to the serve or python backend
 def upload():
    image_Obj = Imageinput()   #this is object of class IMageInput from same form module
-   return render_template("upload.html")
+   name_for_upload_page = session.get["name"]   #get to paste on upload form
+
+   if image_Obj.validate_on_submit():   # validator to chck we get image if not then render on upload page
+      iamge_file = image_Obj.image.data      #get the image from form of imageinput in file image_file
+      
+
+
+
+   
+
+
+
+   return render_template("upload.html",name=name_for_upload_page)
 
 
 
