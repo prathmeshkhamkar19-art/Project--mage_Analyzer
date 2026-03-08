@@ -35,18 +35,13 @@ def upload():
    if image_Obj.validate_on_submit():   # validator to chck we get image if not then render on upload page
       image_file = image_Obj.image.data      #get the image from form of imageinput in file image_file
 
-      name_af_secure = secure_filename(image_file.filename)
+      imagename_af_secure = secure_filename(image_file.filename)
 
-      image_file.save(os.path.join(app.config['UPLOAD_FOLDER'],name_af_secure))  #this save image(image_file) in static file with new_secure_name
+      image_file.save(os.path.join(app.config['UPLOAD_FOLDER'],imagename_af_secure))  #this save image(image_file) in static file with new_secure_name
       
+      return render_template('upload.html',form=image_Obj,name=name_for_upload_page,image=imagename_af_secure) # send all data in upload.html image to show after giving 
 
-
-
-   
-
-
-
-   return render_template("upload.html",name=name_for_upload_page)
+   return render_template("upload.html",form=image_Obj,name=name_for_upload_page)
 
 
 

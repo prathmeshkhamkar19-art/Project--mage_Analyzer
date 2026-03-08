@@ -3,10 +3,30 @@
 {% block title %} ImageUpload Page  {% endblock %}
 
 {% block content %} 
+<h1> Welcome {{ name }} </h1>
+<h2>________________________________________________________________</h2>
+<h3>Please upload image for Analyze </h3>
+<h2>_________________________________________________________________</h2>
 
 
-{{ form.hidden_token() }}
+<form method="POST" enctype="multipart/form-data" >
+  
+    <p>
+        {{ form.hidden_tag() }}   <!-- CSRF token -->
+        {{ form.image.label }} <br>         <!-- Image label -->
+        {{ form.image }}     <br><br>    <!-- File input -->
+        {{ form.submit_img }}  <br>   <!-- Submit button -->
 
+    </p>
+
+</form>
+
+    <!--  Show image only after upload -->
+    {% if image %}
+        <h3>Your Uploaded Image:</h3>
+        <img src="{{ url_for('static', filename='uploads/' + image) }}"
+             width="300">
+    {% endif %}
 
 
 
