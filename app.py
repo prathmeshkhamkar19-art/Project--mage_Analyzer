@@ -41,7 +41,7 @@ def upload():
       
       return render_template('upload.html',form=image_Obj,name=name_for_upload_page,image=imagename_af_secure) # send all data in upload.html image to show after giving 
 
-   return render_template("upload.html",form=image_Obj,name=name_for_upload_page)
+   return render_template("upload.html",form=image_Obj,name=name_for_upload_page)  #we have top pass the object compusery if data is not get 
 
 
 
