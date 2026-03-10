@@ -5,8 +5,16 @@
 {% block content %} 
 
 
-<h1> This is Result Page </h1>
+
+<h2>Hello {{ name }}</h2>
+
+<h3>Image Analysis Result</h3>
 
 
+<p>Name: {{ name }}</p>
+<p>Shape: {{ data.shape }}</p>
+<p>Brightness: {{ data.Brightness }}</p>
+<p>Resolution: {{ data.Resolution[0] }} x {{ data.Resolution[1] }}</p>
 
+<img src="{{ url_for('static', filename='uploads/' + image) }}" alt="Uploaded Image" width="300">
 {% endblock %}

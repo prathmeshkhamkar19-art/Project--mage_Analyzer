@@ -1,7 +1,10 @@
 from flask import Flask,request,render_template,url_for,Response,redirect,session
 from form import Datainput,Imageinput  #from form Module import the Datainput class
 from werkzeug.utils import secure_filename   # used to defend from hacker becouse using file name hacker iherit app.py or install unrequired maleare
+from flask import jsonify
 import os
+
+from utils.image_analysis import image_analysis   #calling function from module image_analysis from folder utils
 
 app =Flask(__name__)
 app.secret_key= "project-secreate-key"
@@ -39,7 +42,7 @@ def upload():
 
       image_file.save(os.path.join(app.config['UPLOAD_FOLDER'],imagename_af_secure))  #this save image(image_file) in static file with new_secure_name
       
-      return render_template('upload.html',form=image_Obj,name=name_for_upload_page,image=imagename_af_secure) # send all data in upload.html image to show after giving 
+      return redirect(url_for('result',name=name_for_upload_page,filename=imagename_af_secure))  # ater sucessful get image send it to result page
 
    return render_template("upload.html",form=image_Obj,name=name_for_upload_page)  #we have top pass the object compusery if data is not get 
 
@@ -50,16 +53,39 @@ def upload():
 
 @app.route("/result", methods= ["GET","POST"])
 def result():
-   return render_template("result.html")
    
 
+   #______________ Normal Process __________________#
 
 
+   image_in_result = request.args.get("filename")   #used to get data from url
+   name_in_result = request.args.get("name")      #used to get data from url
+   
+   image_path= os.path.join(app.config['UPLOAD_FOLDER'],image_in_result)  # store image in ststic folder becuse how image on result page
+    
+   img_info = image_analysis(image_path)  #call the function 
+
+   return render_template("result.html",name=name_in_result,
+                          data = img_info,
+                          image = image_in_result)  #after  get the data pass to result.html
+                                                                                    #pass image not path
 
 
+ #________________REST API _________________________#
 
+# in that we simply get the file name and call the function return the data in json format
+# NOT STORE IMAGE IN STATIC FOLDER 
+@app.route("/api/analyze", methods=["POST"])
+def api_for_analyze():
 
+    if "image" not in request.files:
+        return jsonify({"error": "No image uploaded"}), 400
 
+    image = request.files["image"]
+
+    result = image_analysis(image)
+
+    return jsonify(result)
 
 
 if __name__=="__main__":
